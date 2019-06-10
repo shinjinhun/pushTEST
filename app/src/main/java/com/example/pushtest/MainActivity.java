@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("jhTest",token);
+
+                Toast.makeText(getApplicationContext(),"토큰값 : " + token, Toast.LENGTH_LONG).show();
             }
         });
 
