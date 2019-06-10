@@ -13,8 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("jhTest","aaaa");
-
+        // 단말기 토큰값 가져오기
         String token = FirebaseInstanceId.getInstance().getToken();
         Log.e("jhTest",token);
         Log.d("jhTest",token);
