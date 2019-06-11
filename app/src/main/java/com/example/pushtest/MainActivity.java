@@ -11,6 +11,8 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,19 +21,17 @@ public class MainActivity extends AppCompatActivity {
         // 단말기 토큰값 가져오기
         final String token = FirebaseInstanceId.getInstance().getToken();
 
-        Button button01 = (Button) findViewById(R.id.btn01);
+        button = findViewById(R.id.btn01);
 
-        button01.setOnClickListener(new Button.OnClickListener(){
-
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("jhTest",token);
                 Log.d("jhTest",token);
 
                 Toast.makeText(getApplicationContext(),"토큰값 : " + token, Toast.LENGTH_LONG).show();
             }
         });
 
-        Log.e("jhTest",token);
-        Log.d("jhTest",token);
     }
 }
