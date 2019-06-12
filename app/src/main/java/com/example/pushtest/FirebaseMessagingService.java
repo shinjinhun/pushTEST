@@ -25,7 +25,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         title = remoteMessage.getNotification().getTitle();
         msg = remoteMessage.getNotification().getBody();
 
-
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

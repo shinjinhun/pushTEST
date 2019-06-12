@@ -18,14 +18,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseInstanceId.getInstance();
+
         // 단말기 토큰값 가져오기
-        final String token = FirebaseInstanceId.getInstance().getToken();
+        //final String token = FirebaseInstanceId.getInstance().getToken();
 
         button = findViewById(R.id.btn01);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // 단말기 토큰값 가져오기
+                String token = FirebaseInstanceId.getInstance().getToken();
+
                 Log.e("jhTest",token);
                 Log.d("jhTest",token);
 

@@ -20,6 +20,7 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
     }
 
     private void sendRegistrationToServer(String token) {
-
+        Log.e("jhTest",token);
+        Log.e("jhTest","너는 왜 안 찍히냐..");
     }
 }
