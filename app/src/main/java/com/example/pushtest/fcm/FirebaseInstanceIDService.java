@@ -1,4 +1,4 @@
-package com.example.pushtest;
+package com.example.pushtest.fcm;
 
 import android.util.Log;
 

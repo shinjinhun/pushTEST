@@ -39,5 +39,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //v17.0.0 이전까지는
+        ////var pushToken = FirebaseInstanceId.getInstance().token
+        //v17.0.1 이후부터는 onTokenRefresh()-depriciated
+
     }
+
+
+
 }
