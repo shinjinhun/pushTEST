@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 // 단말기 토큰값 가져오기
                 String token = FirebaseInstanceId.getInstance().getToken();
 
-                Log.e("jhTest",token);
-                Log.d("jhTest",token);
+                Log.e("jhTest","토큰값 : " + token);
 
                 Toast.makeText(getApplicationContext(),"토큰값 : " + token, Toast.LENGTH_LONG).show();
             }

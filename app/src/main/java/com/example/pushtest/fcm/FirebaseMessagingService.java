@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -22,10 +23,19 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     private String msg, title;
 
+    public FirebaseMessagingService() {
+
+    }
+
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
+        Log.d(TAG, "Notofication Title:" + remoteMessage.getNotification().getTitle());
+        Log.d(TAG,"Notification Message:" + remoteMessage.getNotification().getBody());
+
+        // showNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"));
+        
         // 메세지가 올때 여기서 처리
         // 앱이 실행중일때 여기서 이벤트를 받습니다.
         Map<String, String> bundle = remoteMessage.getData();
@@ -55,4 +65,5 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         mBuilder.setContentIntent(contentIntent);
 
     }
+
 }

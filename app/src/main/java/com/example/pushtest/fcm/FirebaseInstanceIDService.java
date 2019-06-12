@@ -26,7 +26,6 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
         // 여기에 받아온 토큰값 저장
         // db에 저장 또는 앱자체 SharedPreferences 저장
 
-        Log.e("jhTest",token);
-        Log.e("jhTest","너는 왜 안 찍히냐..");
+        Log.e(jhTest,"토큰값이 바꼈으니 저장해야지... : " + token);
     }
 }
