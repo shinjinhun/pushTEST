@@ -13,16 +13,25 @@ import com.example.pushtest.MainActivity;
 import com.example.pushtest.R;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
-    private static final String TAG = "FirebaseMsgService";
+    private static final String TAG     = "FirebaseMsgService";
+    private static final String jhTest  = "jhTest";
 
     private String msg, title;
 
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+
+        // 메세지가 올때 여기서 처리
+        // 앱이 실행중일때 여기서 이벤트를 받습니다.
+        Map<String, String> bundle = remoteMessage.getData();
+
         Log.e(TAG, "onMessageReceived");
+        Log.e(jhTest, "bundle : " + bundle);
 
         title = remoteMessage.getNotification().getTitle();
         msg = remoteMessage.getNotification().getBody();
