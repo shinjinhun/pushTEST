@@ -31,39 +31,63 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        Log.d(TAG, "Notofication Title:" + remoteMessage.getNotification().getTitle());
-        Log.d(TAG,"Notification Message:" + remoteMessage.getNotification().getBody());
+//        Log.d(TAG, "Notofication Title:" + remoteMessage.getNotification().getTitle());
+//        Log.d(TAG,"Notification Message:" + remoteMessage.getNotification().getBody());
 
-        // showNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("message"));
+        String messageBody = remoteMessage.getData().get("message");
+        String title = remoteMessage.getData().get("title");
+
+        showNotification(title, messageBody);
         
-        // 메세지가 올때 여기서 처리
-        // 앱이 실행중일때 여기서 이벤트를 받습니다.
-        Map<String, String> bundle = remoteMessage.getData();
+//        // 메세지가 올때 여기서 처리
+//        // 앱이 실행중일때 여기서 이벤트를 받습니다.
+//        Map<String, String> bundle = remoteMessage.getData();
+//
+//        Log.e(TAG, "onMessageReceived");
+//        Log.e(jhTest, "bundle : " + bundle);
+//
+//        title = remoteMessage.getNotification().getTitle();
+//        msg = remoteMessage.getNotification().getBody();
+//
+//        Intent intent = new Intent(this, MainActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
+//
+//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
+//                .setContentTitle(title)
+//                .setContentText(msg)
+//                .setAutoCancel(true)
+//                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+//                .setVibrate(new long[]{1, 1000});
+//
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//        notificationManager.notify(0, mBuilder.build());
+//
+//        mBuilder.setContentIntent(contentIntent);
 
-        Log.e(TAG, "onMessageReceived");
-        Log.e(jhTest, "bundle : " + bundle);
+    }
 
-        title = remoteMessage.getNotification().getTitle();
-        msg = remoteMessage.getNotification().getBody();
+    private void showNotification(String title, String message) {
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this,MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent =
+                PendingIntent.getActivity(this, 0 /*request code*/, intent, PendingIntent.FLAG_ONE_SHOT);
 
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
-
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this).setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(msg)
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title+"님 의 메시지입니다.")
+                .setContentText(message)
                 .setAutoCancel(true)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setVibrate(new long[]{1, 1000});
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent);
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0, mBuilder.build());
-
-        mBuilder.setContentIntent(contentIntent);
-
+        NotificationManager notificationManager = (NotificationManager)
+                getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,notificationBuilder.build());
     }
 
 }
